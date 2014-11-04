@@ -1,0 +1,222 @@
+{{extend 'layout_blank.html'}}
+
+
+{{block center}}
+
+
+<!-- Single Item Start -->
+				
+<div class="single-item">
+<div class="container">
+<!-- Shopping single item contents -->
+<div class="single-item-content">
+<div class="row">
+
+	<div class="col-md-3 col-sm-5">
+		<!-- Product image -->
+		<img class="img-responsive img-thumbnail" src="{{=URL(a='pedeja', c='static', f='images')}}/cliente/{{=Cliente[id_cliente].foto_prin}}" alt="" />
+	</div>
+	
+	<div class="col-md-9 col-sm-7">
+		<!-- Heading -->
+		<h3>{{=Cliente[id_cliente].nome}}</h3>
+		
+	<div class="row">
+		
+		<div class="col-md-7 col-sm-12">
+			<!-- Single item details -->
+			<div class="item-details">
+	
+			<!-- Paragraph -->
+			<p class="text-justify">{{=Cliente[id_cliente].descricao}}</p>
+	
+			<!-- Heading -->
+			<h5>Informações :</h5>
+			<!-- Recipe ingredients -->
+			<ul class="list-unstyled">
+			<li>
+			<i class="fa fa-check"></i> {{=Categoria[Cliente[id_cliente].categoria].nome}} <span class="pull-right"> Categoria</span>
+			<div class="clearfix"></div>
+			</li>
+			<li>
+			<i class="fa fa-check"></i> {{=Cliente[id_cliente].endereco}}, {{=Cliente[id_cliente].numero}} <span class="pull-right"> Endereço</span>
+			<div class="clearfix"></div>
+			</li>
+			<li>
+			<i class="fa fa-check"></i> {{=Cliente[id_cliente].cidade}} <span class="pull-right"> Cidade</span>
+			<div class="clearfix"></div>
+			</li>
+			<li>
+			<i class="fa fa-check"></i> {{=Cliente[id_cliente].telefone}} <span class="pull-right"> Telefone</span>
+			<div class="clearfix"></div>
+			</li>
+			</ul>
+			</div>
+		</div>
+		
+		<div class="col-md-5 col-sm-12"> 
+			<!-- Form inside table wrapper -->
+
+			<div id="map" style="height: 400px; width: 350px">
+
+		</div>
+
+
+	</div><!-- row end  -->
+	</div><!--col9-->
+					
+</div><!--row-->
+						
+</div>
+
+
+
+<!-- Gallery Start -->
+				
+
+<div class="gallery">
+	<div class="container">
+	<!-- Gallery elements with pretty photo -->
+		<div class="gallery-content">
+		<div class="row">
+
+{{if (Cliente[id_cliente].foto_gal1 != "") and (Cliente[id_cliente].foto_gal1 != None):}}
+		<div class="col-md-3 col-sm-4">
+			<!-- Separate gallery element -->
+			<div class="element">
+				<!-- Image -->
+				<img class="img-responsive img-thumbnail" src="{{=URL(a='pedeja', c='static', f='images')}}/galeria/{{=Cliente[id_cliente].foto_gal1}}" alt=""/>
+				<!-- Gallery Image Hover Effect -->
+				<span class="gallery-img-hover"></span>
+				<!-- Gallery Image Hover Icon -->
+				<a href="{{=URL(a='pedeja', c='static', f='images')}}/galeria/{{=Cliente[id_cliente].foto_gal1}}" class="gallery-img-link">
+				<i class="fa fa-search-plus hover-icon icon-left"></i>
+				</a>
+				<!--<a href="#">
+				<i class="fa fa-link hover-icon icon-right"></i>
+				</a>-->
+			</div>
+		</div>
+{{pass}}
+								
+{{if (Cliente[id_cliente].foto_gal2 != "") and (Cliente[id_cliente].foto_gal2 != None):}}		
+		<div class="col-md-3 col-sm-4">
+			<!-- Separate gallery element -->
+			<div class="element">
+				<!-- Image -->
+				<img class="img-responsive img-thumbnail" src="{{=URL(a='pedeja', c='static', f='images')}}/galeria/{{=Cliente[id_cliente].foto_gal2}}" alt=""/>
+				<!-- Gallery Image Hover Effect -->
+				<span class="gallery-img-hover"></span>
+				<!-- Gallery Image Hover Icon -->
+				<a href="{{=URL(a='pedeja', c='static', f='images')}}/galeria/{{=Cliente[id_cliente].foto_gal2}}" class="gallery-img-link">
+				<i class="fa fa-search-plus hover-icon icon-left"></i>
+				</a>
+				<!--<a href="#">
+				<i class="fa fa-link hover-icon icon-right"></i>
+				</a>-->
+			</div>
+		</div>
+{{pass}}
+
+{{if (Cliente[id_cliente].foto_gal3 != "") and (Cliente[id_cliente].foto_gal3 != None):}}		
+		<div class="col-md-3 col-sm-4">
+			<!-- Separate gallery element -->
+			<div class="element">
+				<!-- Image -->
+				<img class="img-responsive img-thumbnail" src="{{=URL(a='pedeja', c='static', f='images')}}/galeria/{{=Cliente[id_cliente].foto_gal3}}" alt=""/>
+				<!-- Gallery Image Hover Effect -->
+				<span class="gallery-img-hover"></span>
+				<!-- Gallery Image Hover Icon -->
+				<a href="{{=URL(a='pedeja', c='static', f='images')}}/galeria/{{=Cliente[id_cliente].foto_gal3}}" class="gallery-img-link">
+				<i class="fa fa-search-plus hover-icon icon-left"></i>
+				</a>
+				<!--<a href="#">
+				<i class="fa fa-link hover-icon icon-right"></i>
+				</a>-->
+			</div>
+		</div>
+{{pass}}
+
+{{if (Cliente[id_cliente].foto_gal4 != "") and (Cliente[id_cliente].foto_gal4 != None):}}		
+		<div class="col-md-3 col-sm-4">
+			<!-- Separate gallery element -->
+			<div class="element">
+				<!-- Image -->
+				<img class="img-responsive img-thumbnail" src="{{=URL(a='pedeja', c='static', f='images')}}/galeria/{{=Cliente[id_cliente].foto_gal4}}" alt=""/>
+				<!-- Gallery Image Hover Effect -->
+				<span class="gallery-img-hover"></span>
+				<!-- Gallery Image Hover Icon -->
+				<a href="{{=URL(a='pedeja', c='static', f='images')}}/galeria/{{=Cliente[id_cliente].foto_gal4}}" class="gallery-img-link">
+				<i class="fa fa-search-plus hover-icon icon-left"></i>
+				</a>
+				<!--<a href="#">
+				<i class="fa fa-link hover-icon icon-right"></i>
+				</a>-->
+			</div>
+		</div>
+{{pass}}
+								
+</div>
+</div><!-- Separate gallery element --><!--/ End Gallery content class -->
+</div>
+</div>
+<!-- Gallery End -->
+
+</div>
+</div><!-- Single Item End -->
+
+
+
+
+<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script src="{{=URL(a='pedeja', c='static', f='js')}}/gmaps.js"></script>
+<!-- JS code GMAPS -->
+<script>
+
+$(document).ready(function () {
+
+$.ajax({
+    type: "POST",
+    url: "log",
+    data: {id: {{=request.vars.id_cliente}} },
+    dataType: "json",
+	success: function(retorno){
+            //alert(retorno[0]);
+            //alert(retorno[1]);
+            var lat = retorno[0]
+            var lon = retorno[1]
+
+            map = new GMaps({
+  			div: '#map',
+ 			 lat: lat,
+ 			 lng: lon,
+			});
+
+			map.addMarker({
+  			lat: lat,
+  			lng: lon,
+  			title: '{{=Cliente[id_cliente].nome}}',
+  			infoWindow: {
+  			content: '<h5>{{=Cliente[id_cliente].nome}}</h5>'
+  			}
+  			//click: function(e) {
+  			//  alert('You clicked in this marker');
+  			//}
+			});
+
+    }//success
+});//ajax
+
+
+//Galeria
+jQuery(".gallery-img-link").prettyPhoto({
+   overlay_gallery: false, social_tools: false
+});
+
+})//Document ready
+
+
+
+</script>
+
+{{end}}

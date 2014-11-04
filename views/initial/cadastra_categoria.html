@@ -1,0 +1,96 @@
+{{extend 'layout_blank.html'}}
+
+
+{{block center}}
+
+<div class="container">
+<div class="row">
+<div class="col-md-12 col-sm-12">
+
+<h2>Área de Gerenciamento</h2>
+<hr>
+
+<div class="row">
+
+<div class="col-md-4 col-sm-4" style="margin-right:90px">
+<div class="contact-form">
+<!-- Heading -->
+<h3>Adicionar Categoria</h3>
+<!-- Form -->
+{{=form.custom.begin}}
+	<label>Nome</label>
+	<div class="form-group">
+	<!-- Form input -->
+	{{=form.custom.widget.nome}}
+	</div>
+
+	<!-- Form button -->
+	<button class="btn btn-danger btn-sm" type="submit">{{=response.submit}}</button>&nbsp;
+{{=form.custom.end}}
+</div>
+</div>
+
+
+<div class="col-md-6 col-sm-6">
+	<h3>Lista de Categorias</h3>
+
+<div class="table-responsive">
+<table class="table table-bordered">
+	<tr>
+		<th align="center">Categoria</th>
+		<th align="center"></th>
+	</tr>
+<tbody>
+
+	{{for dado in con:}}
+	<tr>
+		<td>{{=dado.nome}}</td>
+		<td align="center">
+		 <a href="{{=URL('pedeja', 'initial', 'cadastra_categoria')}}?id_edit={{=dado.id}}">
+                    <i class="fa fa-edit"></i></a> &nbsp;&nbsp;
+
+         <a class="link" data-tabela="cadastra_categoria" data-nome="{{=dado.nome}}" data-value="{{=dado.id}}" href="#">
+                    <i class="fa fa-trash-o"></i></a>	
+		</td>
+	</tr>
+	{{pass}}
+
+</tbody>
+</table>
+</div><!--Tabela-->
+
+</div><!--div tabela-->
+
+</div><!--row-->
+
+
+</div>
+</div>
+</div>
+
+
+<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script src="{{=URL(a='pedeja', c='static', f='js')}}/gmaps.js"></script>
+<!-- JS code GMAPS -->
+<script>
+//Delete
+var links = document.querySelectorAll('.link');
+for (x in links) {
+    links[x].onclick = function() { 
+    var data_attr = this.dataset;
+    //alert(data_attr.value);
+    var id   = data_attr.value;
+    var nome = data_attr.nome;
+    var tabela= data_attr.tabela;
+    decisao = confirm("Tem certeza que deseja remover o item "+nome);
+        if(decisao){
+            location.href="{{=URL(a='pedeja', c='initial', f='delete')}}?id_tab="+id+"&tabela="+tabela+";"
+        }
+    return false;
+    }
+}
+
+</script>
+
+{{end}}
+

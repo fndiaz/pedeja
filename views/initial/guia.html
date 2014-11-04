@@ -1,0 +1,90 @@
+{{extend 'layout_blank.html'}}
+
+
+{{block center}}
+
+
+
+<div class="shopping"><!-- Shopping Start -->
+<div class="container">
+		
+<div class="shopping-content"><!-- Shopping items content -->
+
+	<div class="row">
+
+	{{for dado in con:}}
+
+		<div class="col-md-3 col-sm-6">
+			<!-- Shopping items -->
+		<div class="shopping-item">
+			<!-- Image -->
+				<a href="{{=URL(a='pedeja', c='initial', f='guia_item', vars={'id_cliente':dado.id})}}"><img class="img-responsive" src="{{=URL(a='pedeja', c='static', f='images')}}/cliente/{{=dado.foto_prin}}" alt="" /></a>
+			<!-- Shopping item name / Heading -->
+				<h4 class="pull-left"><a href="{{=URL(a='pedeja', c='initial', f='guia_item', vars={'id_cliente':dado.id})}}">{{=dado.nome}}</a></h4>
+				<span class="item-price pull-right">{{=Categoria[dado.categoria].nome}}</span>
+				<div class="clearfix"></div>
+			<!-- Paragraph -->
+				<p>{{=dado.apresentacao}}</p>
+			<!-- Buy now button -->
+				<div class="visible-xs">
+				<a class="btn btn-danger btn-sm" href="#">Buy Now</a>
+				</div>
+			<!-- Shopping item hover block & link -->
+			<div class="item-hover br-red hidden-xs"></div>
+			<a class="link hidden-xs" href="{{=URL(a='pedeja', c='initial', f='guia_item', vars={'id_cliente':dado.id})}}">Conheça +</a>
+		</div>
+	</div>
+
+
+	{{pass}}
+
+	</div><!--row-->
+
+<!-- Paginacao -->
+{{if paginacao == 'on':}}
+<div class="shopping-pagination">
+    <ul class="pagination">
+        {{if end != paginate:}}<!--maior que 10 não escreve anterior-->
+        <li><a href={{=URL(vars={'page':int(request.vars.page)-1})}}>Anterior</a></li>
+        {{pass}}
+
+        {{for num in range((regis // paginate)+x):
+            num = num +1}}
+        {{if num == int(request.vars.page):}}
+        <li class="active"><a href={{=URL(vars={'page':num})}}>{{=num}}</a></li>
+        {{else:}}
+        <li><a href={{=URL(vars={'page':num})}}>{{=num}}</a></li>
+        {{pass}}
+        {{pass}}
+
+        {{if not end >= regis:}}<!--nao escreve proximo (ultima pagina)-->
+        <li class="active">
+        <li><a href={{=URL(vars={'page':int(request.vars.page)+1})}}>Próximo</a></li>
+        {{pass}}
+    </ul>
+</div>
+{{pass}}
+	
+							
+
+<!-- Pagination -->
+<!--<div class="shopping-pagination">
+	<ul class="pagination">
+		<li class="disabled"><a href="#">&laquo;</a></li>
+		<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+		<li><a href="#">2</a></li>
+		<li><a href="#">3</a></li>
+		<li><a href="#">4</a></li>
+		<li><a href="#">5</a></li>
+		<li><a href="#">&raquo;</a></li>
+	</ul>
+</div>-->
+<!-- Pagination end-->
+
+
+</div><!-- Shopping items content -->
+</div><!--container-->
+</div><!-- Shopping End -->
+
+
+{{end}}

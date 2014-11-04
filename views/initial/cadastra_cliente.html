@@ -1,0 +1,192 @@
+{{extend 'layout_blank.html'}}
+
+
+{{block center}}
+
+<div class="container">
+<div class="row">
+<div class="col-md-12 col-sm-12">
+
+<h2>Área de Gerenciamento</h2>
+<hr>
+
+<div class="row">
+
+<div class="col-md-4 col-sm-4" style="margin-right:200px">
+<div class="contact-form">
+<!-- Heading -->
+<h3>Adicionar Cliente</h3>
+<!-- Form -->
+{{=form.custom.begin}}
+	<label>Nome</label>
+	<div class="form-group">
+	<!-- Form input -->
+	{{=form.custom.widget.nome}}
+	</div>
+
+	<label>Apresentação</label>
+	<div class="form-group">
+	<!-- Form input -->
+	{{=form.custom.widget.apresentacao}}
+	<p id="contador"></p>
+	</div>	
+
+	<label>Descrição</label>
+	<div class="form-group">
+	<!-- Form input -->
+	{{=form.custom.widget.descricao}}
+	</div>
+
+	<label>Categoria</label>
+	<div class="form-group">
+	<!-- Form input -->
+	{{=form.custom.widget.categoria}}
+	</div>
+
+	<label>Endereço</label>
+	<div class="form-group">
+	<!-- Form input -->
+	{{=form.custom.widget.endereco}}
+	</div>
+
+	<label>Número</label>
+	<div class="form-group">
+	<!-- Form input -->
+	{{=form.custom.widget.numero}}
+	</div>
+
+	<label>Cidade</label>
+	<div class="form-group">
+	<!-- Form input -->
+	{{=form.custom.widget.cidade}}
+	</div>
+
+	<label>Telefone</label>
+	<div class="form-group">
+	<!-- Form input -->
+	{{=form.custom.widget.telefone}}
+	</div>
+
+	<label>Foto de capa</label>
+	<div class="form-group">
+	<!-- Form input -->
+	{{=form.custom.widget.foto_prin}}
+	</div>
+
+	<label>Publicado</label>
+	<div class="form-group">
+	<!-- Form input -->
+	{{=form.custom.widget.publicado}}
+	</div>
+
+	<label>Foto galeria 1</label>
+	<div class="form-group">
+	<!-- Form input -->
+	{{=form.custom.widget.foto_gal1}}
+	</div>
+
+	<label>Foto galeria 2</label>
+	<div class="form-group">
+	<!-- Form input -->
+	{{=form.custom.widget.foto_gal2}}
+	</div>
+
+	<label>Foto galeria 3</label>
+	<div class="form-group">
+	<!-- Form input -->
+	{{=form.custom.widget.foto_gal3}}
+	</div>
+
+	<label>Foto galeria 4</label>
+	<div class="form-group">
+	<!-- Form input -->
+	{{=form.custom.widget.foto_gal4}}
+	</div>
+
+
+	<!-- Form button -->
+	<button class="btn btn-danger btn-sm" type="submit">{{=response.submit}}</button>&nbsp;
+{{=form.custom.end}}
+</div>
+</div><!--div form-->
+
+
+<div class="col-md-4 col-sm-4">
+	<h3>Lista de Clientes</h3>
+
+<div class="table-responsive">
+<table class="table table-bordered">
+	<tr>
+		<th align="center">Cliente</th>
+		<th align="center">Publicado</th>
+		<th align="center"></th>
+	</tr>
+<tbody>
+
+	{{for dado in con:}}
+	<tr>
+		<td>{{=dado.nome}}</td>
+		<td>{{=dado.publicado}}</td>
+		<td align="center">
+		 <a href="{{=URL('pedeja', 'initial', 'cadastra_cliente')}}?id_edit={{=dado.id}}">
+                    <i class="fa fa-edit"></i></a> &nbsp;&nbsp;
+
+         <a class="link" data-tabela="cadastra_cliente" data-nome="{{=dado.nome}}" data-value="{{=dado.id}}" href="#">
+                    <i class="fa fa-trash-o"></i></a>	
+		</td>
+	</tr>
+	{{pass}}
+
+</tbody>
+</table>
+</div><!--Tabela-->
+
+</div><!--div tabela-->
+
+</div><!--row-->
+
+
+
+</div>
+</div>
+</div>
+
+
+<script>
+//Delete
+var links = document.querySelectorAll('.link');
+for (x in links) {
+    links[x].onclick = function() { 
+    var data_attr = this.dataset;
+    //alert(data_attr.value);
+    var id   = data_attr.value;
+    var nome = data_attr.nome;
+    var tabela= data_attr.tabela;
+    decisao = confirm("Tem certeza que deseja remover o item "+nome);
+        if(decisao){
+            location.href="{{=URL(a='pedeja', c='initial', f='delete')}}?id_tab="+id+"&tabela="+tabela+";"
+        }
+    return false;
+    }
+}
+
+
+$(function (){ 
+$("#cliente_apresentacao").keyup(function(){
+var limite = 60
+var tamanho = $(this).val().length;
+if(tamanho > limite)
+tamanho -= 1
+var contador = limite - tamanho
+$("#contador").text(contador)
+if(limite >= tamanho){
+var txt = $(this).val().substring(0, limite)
+$(this).val(txt)}
+else if(tamanho > limite )
+$("#contador").css("color","#FF0000")
+})
+})
+
+</script>
+
+{{end}}
