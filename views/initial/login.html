@@ -1,0 +1,47 @@
+{{extend 'layout_blank.html'}}
+
+
+{{block center}}
+
+<div class="container">
+<div class="row">
+<div class="col-md-12 col-sm-12">
+
+<div class="row">
+
+<div class="col-md-4 col-sm-4" style="margin-right:90px">
+<div class="contact-form">
+<!-- Heading -->
+<h3>Entrar</h3>
+<!-- Form -->
+{{=form.custom.begin}}
+	<label>Email</label>
+	<div class="form-group">
+	<!-- Form input -->
+	{{=form.custom.widget.email}}
+	</div>
+
+	<label>Password</label>
+	<div class="form-group">
+	<!-- Form input -->
+	{{=form.custom.widget.password}}
+	</div>
+
+	<!-- Form button -->
+	<button class="btn btn-danger btn-sm" type="submit">{{=response.submit}}</button>&nbsp;
+{{=form.custom.end}}
+</div>
+</div>
+
+
+</div><!--row-->
+
+
+</div>
+</div>
+</div>
+
+
+
+
+{{end}}

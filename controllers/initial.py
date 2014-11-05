@@ -2,10 +2,10 @@
 
 def principal():
 	response.title = 'Padrão'
-	teste = "páaagina principal"
 	
-	return response.render("initial/principal.html", teste=teste)
+	return response.render("initial/principal.html")
 
+@auth.requires(auth.has_membership('gerenciador') or auth.has_membership('administrador'))
 def cadastra_categoria():
 	response.title = 'Categorias'
 	id_edit	= request.vars['id_edit']
@@ -31,6 +31,7 @@ def cadastra_categoria():
 	return response.render("initial/cadastra_categoria.html", form=form, con=con)
 
 
+@auth.requires(auth.has_membership('gerenciador') or auth.has_membership('administrador'))
 def cadastra_cliente():
 	response.title = 'Clientes'
 	id_edit = request.vars['id_edit']
@@ -118,22 +119,6 @@ def log():
 	return response.json(lista)
 
 
-def f_portabilidade_form():
-	response.title = 'Portabilidade'
-	response.marca=['Configs', 'Portabilidade']
-	
-	form 	=	SQLFORM(db.f_portabilidade, 1)
-
-	for input in form.elements():
-		input['_class'] = 'form-control'
-
-	if form.process().accepted:
-		session.alerta_sucesso = 'Dados salvos com sucesso!'
-		redirect(URL('f_portabilidade_form'))
-
-	return response.render("funcional/form_portabilidade.html", form=form)
-
-
 def delete():
 	print request.vars
 	funcao 	=	request.vars['tabela']
@@ -149,16 +134,51 @@ def delete():
 
 
 
+##Autenticação
 def user():
-	#if request.args(0) == 'register':
-    #    	db.auth_user.bio.writable = db.auth_user.bio.readable = False
+	#	#if request.args(0) == 'register':
+	#  	db.auth_user.bio.writable = db.auth_user.bio.readable = False
+	print request.args(0)
+	if request.args(0) == 'not_authorized':
+		redirect (URL('initial', 'not_authorized'))
+
+	if request.args(0) == 'login':
+		redirect(URL('initial', 'login'))
 	return response.render("initial/user.html", user=auth())
+
+def login():
+	response.title = 'Login'
+	response.submit = 'login'
+	form = auth.login()
+	form.element(_name='email')['_class'] = "form-control"
+	form.element(_name='password')['_class'] = "form-control"
+
+	return response.render("initial/login.html", form=form)
+
+def profile():
+	response.title = 'Profile'
+	response.submit = 'editar'
+	form = auth.profile()
+	form.element(_name='email')['_class'] = "form-control"
+	form.element(_name='first_name')['_class'] = "form-control"
+	form.element(_name='last_name')['_class'] = "form-control"
+
+	return response.render("initial/profile.html", form=form)
+
+def change_password():
+	response.title = 'Alterar Senha'
+	response.submit = 'alterar'
+	form = auth.change_password()
+	form.element(_name='old_password')['_class'] = "form-control"
+	form.element(_name='new_password')['_class'] = "form-control"
+	form.element(_name='new_password2')['_class'] = "form-control"
+
+	return response.render("initial/change_password.html", form=form)
+
+
 
 def register():
 	return auth.register()
-
-def login():
-        return auth.login()
 
 def account():
     return dict(register=auth.register(),
@@ -167,6 +187,31 @@ def account():
 def download():
 	return response.download(request, db)
 
+
+##Lista auth_users
+@auth.requires(auth.has_membership('administrador'))
+def usuarios():
+	response.title = 'Usuários'
+	grid 	= SQLFORM.grid(db.auth_user, user_signature=False)
+	#editor = permissao()
+	#usuarios= db(db.auth_user.first_name != 'root').select()
+	#logger.debug("acesso a usuarios")
+	
+	return response.render("initial/show_grid.html", grid=grid)
+
+@auth.requires(auth.has_membership('administrador'))
+def grupos():
+	response.title = 'Grupos'
+	grid 	= SQLFORM.grid(db.auth_group, user_signature=False)
+	
+	return response.render("initial/show_grid.html", grid=grid)
+
+@auth.requires(auth.has_membership('administrador'))
+def membros():
+	response.title = 'Membros'
+	grid 	= SQLFORM.grid(db.auth_membership, user_signature=False)
+	
+	return response.render("initial/show_grid.html", grid=grid)
 
 
 	

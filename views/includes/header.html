@@ -194,20 +194,27 @@
                           <li><a href="contact.html">Contact Us</a></li>
                         </ul>
                       </li>-->
-                      <!--<li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{=URL(a='pedeja', c='static', f='img')}}/nav-menu/nav5.jpg" class="img-responsive" alt="" /> Pages <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="error.html">404 Error</a></li>
-                          <li><a href="0-base.html">Blank Page</a></li>
-                          <li><a href="blog.html">Blog</a></li>
-                          <li><a href="blog-single.html">Blog Single</a></li>
-                          <li><a href="components.html">Components</a></li>
-                          <li><a href="general.html">General</a></li>
-                          <li><a href="nutrition-info.html">Nutrition Info</a></li>
-                          <li><a href="recipe.html">Recipes</a></li>
-                        </ul>
-                      </li>-->
+
                       <li><a href="aboutus.html"><img src="{{=URL(a='pedeja', c='static', f='img')}}/nav-menu/nav1.jpg" class="img-responsive" alt="" /> Sobre</a></li>
+
+                      {{if ( auth.has_membership('gerenciador') or auth.has_membership('administrador') ):}}
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{=URL(a='pedeja', c='static', f='img')}}/nav-menu/nav7.jpg" class="img-responsive" alt="" /> Gerenciar <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="{{=URL(a='pedeja', c='initial', f='profile')}}">Profile</a></li>
+                          <li><a href="{{=URL(a='pedeja', c='initial', f='change_password')}}">Alterar senha</a></li>
+                          <li><a href="{{=URL(a='pedeja', c='initial', f='cadastra_categoria')}}">Cadastrar Categoria</a></li>
+                          <li><a href="{{=URL(a='pedeja', c='initial', f='cadastra_cliente')}}">Cadastrar Cliente</a></li>
+                          {{if (auth.has_membership('administrador') ):}}
+                            <li><a href="{{=URL(a='pedeja', c='initial', f='usuarios')}}">Usuários</a></li>
+                            <li><a href="{{=URL(a='pedeja', c='initial', f='grupos')}}">Grupos</a></li>
+                            <li><a href="{{=URL(a='pedeja', c='initial', f='membros')}}">Membros</a></li>
+                          {{pass}}
+                          <li><a href="{{=URL(a='pedeja', c='user', f='logout')}}">Logout</a></li>
+                        </ul>
+                      </li>
+                      {{pass}}
+
                     </ul>
                   </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
