@@ -118,6 +118,12 @@ def log():
 
 	return response.json(lista)
 
+def sobre():
+	response.title = "Descrição"
+
+	return response.render("initial/sobre.html")
+
+
 
 def delete():
 	print request.vars

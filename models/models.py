@@ -35,6 +35,8 @@ Cliente = db.define_table("cliente",
 
 if db(db.auth_group.role == 'administrador').isempty():
 	db.auth_group.insert(role="administrador")
+if db(db.auth_group.role == 'gerenciador').isempty():
+	db.auth_group.insert(role="gerenciador")
 
 if db(db.auth_user.email == 'fndiaz02@gmail.com').isempty():
 	##Inserindo user root

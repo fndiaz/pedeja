@@ -11,8 +11,10 @@ routers = dict(
         default_function='principal',
         controllers=['initial', 'manager'],
         functions=['home', 'contact', 'about', 'user', 'log', 'delete', 
-            'user', 'register', 'login', 'principal', 'log_out', 'log_in',
-	    'cadastra_cliente',  'cadastra_categoria', 'guia', 'guia_item']
+            'user', 'register', 'login', 'principal', 'log_out', 'log_in', 
+	    'cadastra_cliente',  'cadastra_categoria', 'guia', 'guia_item',
+	    'usuarios', 'grupos', 'membros', 'profile', 'change_password', 
+	    'sobre',]
     )
 
 )
