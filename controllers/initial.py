@@ -63,7 +63,7 @@ def cadastra_cliente():
 	return response.render("initial/cadastra_cliente.html", form=form, con=con)
 
 def guia():
-	response.title = 'Comidas'
+	response.title = 'Restaurantes'
 	query = (Cliente.publicado == True)
 
 	#
