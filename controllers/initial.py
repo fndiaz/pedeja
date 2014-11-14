@@ -21,13 +21,16 @@ def cadastra_categoria():
 	for input in form.elements():
 		input['_class'] = 'form-control'
 	form.custom.widget.nome['_placeholder'] = "nome da categoria"
+	form.custom.widget.destaque['_style'] = "width:40px"
+	form.custom.widget.posicao['_style'] = "width:60px"
+	form.custom.widget.descricao['_placeholder'] = "Mínimo 74, Máximo 85"
 
 	if form.process().accepted:
 		redirect("cadastra_categoria")
 	else:
 		print 'erro form'
 
-	con = db(Categoria).select()
+	con = db(Categoria).select(orderby=Categoria.posicao)
 	return response.render("initial/cadastra_categoria.html", form=form, con=con)
 
 
@@ -64,7 +67,12 @@ def cadastra_cliente():
 
 def guia():
 	response.title = 'Restaurantes'
+	categoria=request.vars.categoria
 	query = (Cliente.publicado == True)
+
+	print request.vars.categoria
+	if categoria != None:
+		query=query and (Cliente.categoria == request.vars.categoria)
 
 	#
 	paginate 	=	8
@@ -85,7 +93,7 @@ def guia():
 	con = db(query).select(orderby=Cliente.id, limitby=(start,end))
 
 	return response.render("initial/guia.html", con=con, 
-			end=end, paginacao="on", regis=regis, paginate=paginate, x=x)
+			end=end, regis=regis, paginate=paginate, x=x)
 
 def guia_item():
 	response.title = "Descrição"

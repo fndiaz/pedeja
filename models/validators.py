@@ -1,6 +1,8 @@
 
 
 db.categoria.nome.requires = IS_NOT_EMPTY()
+db.categoria.posicao.requires = IS_IN_SET(range(1,30)) 
+db.categoria.descricao.requires = [IS_NOT_EMPTY(), IS_LENGTH(minsize=74,maxsize=85)]
 
 db.cliente.nome.requires = IS_NOT_EMPTY()
 db.cliente.apresentacao.requires = [IS_NOT_EMPTY(), IS_LENGTH(maxsize=60)]

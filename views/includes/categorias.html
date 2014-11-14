@@ -1,0 +1,50 @@
+        <div class="dishes padd">
+          <div class="container">
+            <!-- Default Heading -->
+            <div class="default-heading">
+              <!-- Crown image -->
+              <img class="img-responsive" src="{{=URL(a='pedeja', c='static', f='img')}}/crown.png" alt="" />
+              <!-- Heading -->
+              <h2>Variedades</h2>
+              <!-- Paragraph -->
+              <p>Pede Já facilita o serviço de delivery na Baixada Santista, aqui você pode encontrar sua comida favorita buscando por categorias.</p>
+              <!-- Border -->
+              <div class="border"></div>
+            </div>
+            <div class="row">
+
+            {{for dado in db(Categoria.destaque == True).select(orderby=Categoria.posicao, limitby=(0,8)):}}
+                {{print dado}}
+              
+              <div class="col-md-3 col-sm-6"> 
+                <div class="dishes-item-container">
+                  <!-- Image Frame -->
+                  <div class="img-frame">
+                    <!-- Image -->
+                    <img src="{{=URL(a='pedeja', c='static', f='images')}}/categoria/{{=dado.foto}}" class="img-responsive" alt="" />
+                    <!-- Block for on hover effect to image -->
+                    <div class="img-frame-hover">
+                      <!-- Hover Icon -->
+                      <a href="{{=URL(a='pedeja', c='initial', f='guia', vars={'page':'1', 'categoria': dado.id} )}}"><i class="fa fa-cutlery"></i></a>
+                    </div>
+                  </div>
+                  <!-- Dish Details -->
+                  <div class="dish-details">
+                    <!-- Heading -->
+                    <h3>{{=dado.nome}}</h3>
+                    <!-- Paragraph -->
+                    <p>{{=dado.descricao}}</p>
+                    <!-- Button -->
+                    <a href="{{=URL(a='pedeja', c='initial', f='guia', vars={'page':'1', 'categoria': dado.id} )}}" class="btn btn-danger btn-sm">Encontrar</a>
+                  </div>
+                </div>
+              </div>
+
+          {{pass}}
+
+
+
+
+            </div><!--row-->
+          </div>          
+        </div>

@@ -24,6 +24,31 @@
 	{{=form.custom.widget.nome}}
 	</div>
 
+	<label>Descrição</label>
+	<div class="form-group">
+	<!-- Form input -->
+	{{=form.custom.widget.descricao}}
+	<p id="contador"></p>
+	</div>
+
+	<label>Foto</label>
+	<div class="form-group">
+	<!-- Form input -->
+	{{=form.custom.widget.foto}}
+	</div>
+
+	<label>Destaque</label>
+	<div class="form-group">
+	<!-- Form input -->
+	{{=form.custom.widget.destaque}}
+	</div>
+
+	<label>Posição na página</label>
+	<div class="form-group">
+	<!-- Form input -->
+	{{=form.custom.widget.posicao}}
+	</div>
+
 	<!-- Form button -->
 	<button class="btn btn-danger btn-sm" type="submit">{{=response.submit}}</button>&nbsp;
 {{=form.custom.end}}
@@ -38,6 +63,8 @@
 <table class="table table-bordered">
 	<tr>
 		<th align="center">Categoria</th>
+		<th align="center">Destaque</th>
+		<th align="center">Posição</th>
 		<th align="center"></th>
 	</tr>
 <tbody>
@@ -45,6 +72,8 @@
 	{{for dado in con:}}
 	<tr>
 		<td>{{=dado.nome}}</td>
+		<td>{{=dado.destaque}}</td>
+		<td>{{=dado.posicao}}</td>
 		<td align="center">
 		 <a href="{{=URL('pedeja', 'initial', 'cadastra_categoria')}}?id_edit={{=dado.id}}">
                     <i class="fa fa-edit"></i></a> &nbsp;&nbsp;
@@ -89,6 +118,28 @@ for (x in links) {
     return false;
     }
 }
+
+$(function (){ 
+$("#categoria_descricao").keyup(function(){
+var limite = 90
+var tamanho = $(this).val().length;
+if(tamanho > limite)
+tamanho -= 1
+var contador = limite - tamanho
+$("#contador").text(tamanho)
+if(limite >= tamanho){
+var txt = $(this).val().substring(0, limite)
+$(this).val(txt)}
+if ((tamanho < 74 ) || (tamanho > 85 )){
+$("#contador").css("color","#FF0000")
+}
+else{
+$("#contador").css("color","black")
+}
+
+})
+})
+
 
 </script>
 

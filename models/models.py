@@ -9,8 +9,17 @@ if request.is_local:
 else:
 	galeriafolder='/var/www/web2py/applications/pedeja/static/images/galeria'
 
+if request.is_local:
+	categfolder='/home/fernando/web2py/applications/pedeja/static/images/categoria'
+else:
+	categfolder='/var/www/web2py/applications/pedeja/static/images/categoria'
+
 Categoria = db.define_table("categoria",
 	Field("nome"),
+	Field("foto", "upload", uploadfolder=categfolder,),
+	Field("destaque", "boolean"),
+	Field("descricao", "text"),
+	Field("posicao"),
 	format="%(nome)s")
 
 

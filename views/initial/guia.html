@@ -40,8 +40,35 @@
 
 	</div><!--row-->
 
+
+
+{{categoria=request.vars.categoria}}
+{{if categoria != None:}}
+
 <!-- Paginacao -->
-{{if paginacao == 'on':}}
+<div class="shopping-pagination">
+    <ul class="pagination">
+        {{if end != paginate:}}<!--maior que 10 não escreve anterior-->
+        <li><a href={{=URL(vars={'page':int(request.vars.page,)-1, 'categoria':request.vars.categoria})}}>Anterior</a></li>
+        {{pass}}
+
+        {{for num in range((regis // paginate)+x):
+            num = num +1}}
+        {{if num == int(request.vars.page):}}
+        <li class="active"><a href={{=URL(vars={'page':num, 'categoria':request.vars.categoria})}}>{{=num}}</a></li>
+        {{else:}}
+        <li><a href={{=URL(vars={'page':num, 'categoria':request.vars.categoria})}}>{{=num}}</a></li>
+        {{pass}}
+        {{pass}}
+
+        {{if not end >= regis:}}<!--nao escreve proximo (ultima pagina)-->
+        <li class="active">
+        <li><a href={{=URL(vars={'page':int(request.vars.page)+1, 'categoria':request.vars.categoria})}}>Próximo</a></li>
+        {{pass}}
+    </ul>
+</div>
+
+{{else:}}
 <div class="shopping-pagination">
     <ul class="pagination">
         {{if end != paginate:}}<!--maior que 10 não escreve anterior-->
@@ -63,9 +90,8 @@
         {{pass}}
     </ul>
 </div>
-{{pass}}
-	
-							
+
+{{pass}}					
 
 <!-- Pagination -->
 <!--<div class="shopping-pagination">
