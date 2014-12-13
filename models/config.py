@@ -41,12 +41,14 @@ auth.messages.access_denied = 'Acesso negado! Contate o administrador'
 auth.messages.invalid_email = 'email Inválido'
 auth.messages.invalid_login = 'Login Inválido'
 
+#language
+T.force('pt-br')
+
 #mail
 mail = auth.settings.mailer
-mail.settings.server = "mail.ad2.com.br:587"
-mail.settings.sender = "smtp_avisos@ad2.com.br"
-mail.settings.login = "smtp_avisos@ad2.com.br:senha"
-
+mail.settings.server = "mail.syncweb.com.br:587"
+mail.settings.sender = "fernando@syncweb.com.br"
+mail.settings.login = "fernando@syncweb.com.br:senha"
 
 #signals
 def notifica(form):

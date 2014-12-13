@@ -131,6 +131,51 @@ def sobre():
 
 	return response.render("initial/sobre.html")
 
+@auth.requires(auth.has_membership('gerenciador') or auth.has_membership('administrador'))
+def pre_cadastro():
+	response.title = "Cadastre-se"
+	response.submit = "Cadastrar"
+
+	form = SQLFORM(Pre_cadastro, _class='form-horizontal')
+	for input in form.elements():
+		input['_class'] = 'form-control'
+		input['_style']	= 'width:400px'
+	form.custom.widget.numero['_style'] = "width:200px"
+	form.custom.widget.nome['_placeholder'] = "nome da empresa"
+	form.custom.widget.endereco['_placeholder'] = "Exemplo: Avenida Paulo VI"
+	form.custom.widget.numero['_placeholder'] = "Exemplo: 1000"
+	form.custom.widget.telefone['_placeholder'] = "Exemplo: 13 99999999"
+	form.custom.widget.telefone_prop['_placeholder'] = "Exemplo: 13 99999999"
+	form.custom.widget.site['_placeholder'] = "Exemplo: www.empresa.com.br"
+	form.custom.widget.email['_placeholder'] = "Exemplo: fulano@empresa.com.br"
+	form.custom.widget.cnpj['_placeholder'] = "somente números"
+	form.custom.widget.proprietario['_placeholder'] = "nome do proprietário"
+	if form.process().accepted:
+		pre_cadastro_success(form.vars)
+		return response.render("initial/pre_cadastro_success.html")
+	else:
+		print 'erro'
+		response.alerta_erro="Erros no formulário"
+
+	return response.render("initial/pre_cadastro.html", form=form)
+
+def pre_cadastro_success(var):
+	mail.send(
+			to="fndiaz02@gmail.com",
+			subject="Pré Cadastro PedeJá",
+			message="<html>A empresa %s acaba de se cadastrar com os dados abaixo <br>nome: %s <br>telefone: %s<br><br>É preciso fazer ligon no sistema para validar os dados</html>" % (var.nome, var.nome, var.telefone,)
+			)
+
+def show_pre_cadastro():
+	response.title = 'Pré Cadastros'
+	fields = (Pre_cadastro.nome, Pre_cadastro.categoria, Pre_cadastro.status)
+	grid 	= SQLFORM.grid(Pre_cadastro, user_signature=False, csv=False,
+							fields=fields, paginate=10, create=False)
+	#editor = permissao()
+	#usuarios= db(db.auth_user.first_name != 'root').select()
+	#logger.debug("acesso a usuarios")
+	
+	return response.render("initial/show_grid.html", grid=grid)
 
 
 def delete():

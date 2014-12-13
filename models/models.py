@@ -40,6 +40,21 @@ Cliente = db.define_table("cliente",
 	Field("foto_gal4", "upload", uploadfolder=galeriafolder,),
 	format="%(nome)s")
 
+Pre_cadastro = db.define_table("pre_cadastro",
+	Field("nome"),
+	Field("categoria", db.categoria),
+	Field("endereco"),
+	Field("numero"),
+	Field("cidade"),
+	Field("telefone"),
+	Field("site"),
+	Field("email"),
+	Field("status", "boolean"),
+
+	Field("proprietario"),
+	Field("cnpj"),
+	Field("telefone_prop"),
+	format="%(nome)s")
 
 
 if db(db.auth_group.role == 'administrador').isempty():

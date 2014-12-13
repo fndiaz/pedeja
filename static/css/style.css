@@ -58,7 +58,7 @@ hr{
 
 form label { font-weight: normal; color: #9a9a9a; }
 form select { padding-left: 7px !important }
-form select, form textarea { color: #9a9a9a !important; }
+form select, form textarea { color: #555 !important; }
 form input[type="text"], form input[type="password"], form input[type="email"],
 form select, form textarea{ box-shadow: none !important; }
 .table-responsive { border-radius: 4px; }

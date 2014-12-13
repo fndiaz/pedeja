@@ -195,6 +195,8 @@
                         </ul>
                       </li>-->
 
+                      <li><a href="{{=URL(a='pedeja', c='initial', f='pre_cadastro')}}"><img src="{{=URL(a='pedeja', c='static', f='img')}}/nav-menu/nav8.jpg" class="img-responsive" alt="" /> Cadastre-se</a></li>
+
                       <li><a href="{{=URL(a='pedeja', c='initial', f='sobre')}}"><img src="{{=URL(a='pedeja', c='static', f='img')}}/nav-menu/nav1.jpg" class="img-responsive" alt="" /> Sobre</a></li>
 
                       {{if ( auth.has_membership('gerenciador') or auth.has_membership('administrador') ):}}
@@ -205,6 +207,7 @@
                           <li><a href="{{=URL(a='pedeja', c='initial', f='change_password')}}">Alterar senha</a></li>
                           <li><a href="{{=URL(a='pedeja', c='initial', f='cadastra_categoria')}}">Cadastrar Categoria</a></li>
                           <li><a href="{{=URL(a='pedeja', c='initial', f='cadastra_cliente')}}">Cadastrar Cliente</a></li>
+                          <li><a href="{{=URL(a='pedeja', c='initial', f='show_pre_cadastro')}}">Pré Cadastros</a></li>
                           {{if (auth.has_membership('administrador') ):}}
                             <li><a href="{{=URL(a='pedeja', c='initial', f='usuarios')}}">Usuários</a></li>
                             <li><a href="{{=URL(a='pedeja', c='initial', f='grupos')}}">Grupos</a></li>

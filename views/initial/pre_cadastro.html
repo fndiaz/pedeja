@@ -1,0 +1,139 @@
+{{extend 'layout_blank.html'}}
+
+
+{{block center}}
+
+				<!-- Checkout Start -->
+				
+<div class="checkout">
+	<div class="container">
+	<!-- Heading -->
+	<h4>Empresa</h4>
+	<div class="row">
+							
+	<div class="col-md-7 col-sm-6">
+
+		<!--<h3>Dados da Empresa</h3>-->
+		<!-- Form -->
+		{{=form.custom.begin}}
+		
+		
+		<div class="form-group">
+			<label class="col-md-2 control-label">Nome</label>
+			<div class="col-md-8">
+			{{=form.custom.widget.nome}}
+		</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-md-2 control-label">Categoria</label>
+			<div class="col-md-8">
+			{{=form.custom.widget.categoria}}
+		</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-md-2 control-label">Endereço</label>
+			<div class="col-md-8">
+			{{=form.custom.widget.endereco}}
+		</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-md-2 control-label">Número</label>
+			<div class="col-md-8">
+			{{=form.custom.widget.numero}}
+		</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-md-2 control-label">Cidade</label>
+			<div class="col-md-8">
+			{{=form.custom.widget.cidade}}
+		</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-md-2 control-label">Telefone</label>
+			<div class="col-md-8">
+			{{=form.custom.widget.telefone}}
+		</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-md-2 control-label">Site</label>
+			<div class="col-md-8">
+			{{=form.custom.widget.site}}
+		</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-md-2 control-label">Email</label>
+			<div class="col-md-8">
+			{{=form.custom.widget.email}}
+		</div>
+		</div>
+
+		<h4>Proprietário</h4>
+
+		<div class="form-group">
+			<label class="col-md-2 control-label">Nome</label>
+			<div class="col-md-8">
+			{{=form.custom.widget.proprietario}}
+		</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-md-2 control-label">CNPJ/CPF</label>
+			<div class="col-md-8">
+			{{=form.custom.widget.cnpj}}
+		</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-md-2 control-label">Telefone</label>
+			<div class="col-md-8">
+			{{=form.custom.widget.telefone_prop}}
+		</div>
+		</div>
+
+
+<!-- Form button -->
+<div class="col-md-offset-2 col-md-8">
+<button type="submit" class="btn btn-danger btn-sm">Confirmar Cadastro</button>&nbsp;
+<button type="reset" class="btn btn-default btn-sm">Limpar Campos</button>
+</div>
+{{=form.custom.end}}
+</div><!--col-7-->
+
+
+							<div class="col-md-5 col-sm-6">
+								<!-- Checkout sidebar items -->
+								<div class="sidebar-item">
+									<!-- Heading -->
+									<h5 class="pull-left">Gratuito e rápido</h5>
+									<!-- Sidebar content icon -->
+									<i class="fa fa-fighter-jet br-green pull-right"></i>
+									<div class="clearfix"></div>
+									<!-- Sidebar Paragraph -->
+									<p>Você pode se cadastrar gratuitamente respondendo o questionário ao lado, assim que ele for processado as informações seguem diretamente para um de nossos funcionários, que vão validar os dados e entrar em contato com você para confirmar o cadastro. Assim podemos asseguar de forma segura e rápida sua participação em nosso guia.</p>
+								</div>
+								<!-- Checkout sidebar items -->
+								<div class="sidebar-item">
+									<!-- Heading -->
+									<h5 class="pull-left">Alcance</h5>
+									<!-- Sidebar content icon -->
+									<i class="fa fa-bullhorn br-red pull-right"></i>
+									<div class="clearfix"></div>
+									<!-- Sidebar Paragraph -->
+									<p>Aumente o alcance de sua empresa, milhares de pessoas visitam o guia pede mais semanalmente, pois ele foi desenvolvido para você encontrar todas as informações atualizadas sobre restaurantes da Baixada Santista.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Checkout End -->
+
+
+{{end}}
