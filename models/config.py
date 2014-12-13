@@ -46,9 +46,9 @@ T.force('pt-br')
 
 #mail
 mail = auth.settings.mailer
-mail.settings.server = "mail.syncweb.com.br:587"
-mail.settings.sender = "fernando@syncweb.com.br"
-mail.settings.login = "fernando@syncweb.com.br:senha"
+mail.settings.server = "smtp.gmail.com:587"
+mail.settings.sender = "fndiaz02@gmail.com"
+mail.settings.login = "fndiaz02@gmail.com:senha"
 
 #signals
 def notifica(form):

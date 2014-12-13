@@ -131,7 +131,7 @@ def sobre():
 
 	return response.render("initial/sobre.html")
 
-@auth.requires(auth.has_membership('gerenciador') or auth.has_membership('administrador'))
+
 def pre_cadastro():
 	response.title = "Cadastre-se"
 	response.submit = "Cadastrar"
@@ -160,17 +160,22 @@ def pre_cadastro():
 	return response.render("initial/pre_cadastro.html", form=form)
 
 def pre_cadastro_success(var):
-	mail.send(
-			to="fndiaz02@gmail.com",
+	dest=['fndiaz02@gmail.com', 'teste@pedeja.com.br']
+	for dado in dest:
+		mail.send(
+			to=dest,
 			subject="Pré Cadastro PedeJá",
-			message="<html>A empresa %s acaba de se cadastrar com os dados abaixo <br>nome: %s <br>telefone: %s<br><br>É preciso fazer ligon no sistema para validar os dados</html>" % (var.nome, var.nome, var.telefone,)
+			message="<html>A empresa %s acaba de se cadastrar com os dados abaixo <br>nome: %s <br>"
+			"telefone: %s<br><br>É preciso fazer login no sistema para validar os dados<br>"\
+			"<a href='http://www.pedeja.com.br/pre_cadastro'>Login no Sistema</a></html>" % (var.nome, var.nome, var.telefone,)
 			)
 
+@auth.requires(auth.has_membership('gerenciador') or auth.has_membership('administrador'))
 def show_pre_cadastro():
 	response.title = 'Pré Cadastros'
 	fields = (Pre_cadastro.nome, Pre_cadastro.categoria, Pre_cadastro.status)
 	grid 	= SQLFORM.grid(Pre_cadastro, user_signature=False, csv=False,
-							fields=fields, paginate=10, create=False)
+							fields=fields, paginate=10, create=False, orderby=~Pre_cadastro.id)
 	#editor = permissao()
 	#usuarios= db(db.auth_user.first_name != 'root').select()
 	#logger.debug("acesso a usuarios")
