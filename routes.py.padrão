@@ -14,7 +14,7 @@ routers = dict(
             'user', 'register', 'login', 'principal', 'log_out', 'log_in', 
 	    'cadastra_cliente',  'cadastra_categoria', 'guia', 'guia_item',
 	    'usuarios', 'grupos', 'membros', 'profile', 'change_password', 
-	    'sobre',]
+	    'sobre', 'pre_cadastro', 'pre_cadastro_success', 'show_pre_cadastro']
     )
 
 )
